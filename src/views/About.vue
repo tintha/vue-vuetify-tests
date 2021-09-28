@@ -8,10 +8,12 @@
     </v-tabs>
     <p>Grand parent {{ text }}</p>
     <p v-for="t in textArray" :key="t">{{ t }}</p>
+    <p>{{ obj.title }}, {{ obj.subtitle }}</p>
     <router-view
       :key="$route.path"
       :text.sync="text"
       :textArray.sync="textArray"
+      :obj.sync="obj"
     />
   </div>
 </template>
@@ -25,6 +27,10 @@ export default {
       tabs: ["child1", "child2", "child3"],
       text: "hallo",
       textArray: ["da", "bin", "ich"],
+      obj: {
+        title: "title",
+        subtitle: "subtile",
+      },
     };
   },
 };
