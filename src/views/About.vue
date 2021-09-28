@@ -7,6 +7,7 @@
       </v-tab>
     </v-tabs>
     <p>Grand parent {{ text }}</p>
+    <p v-for="t in textArray" :key="t">{{ t }}</p>
     <router-view
       :key="$route.path"
       :text.sync="text"

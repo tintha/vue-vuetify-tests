@@ -7,12 +7,7 @@
       @keyup="$parent.$emit('update:text', newText)"
     ></v-text-field>
     <p v-for="t in newArray" :key="t">
-      {{ t
-      }}<v-icon
-        @click="deleteText(t)"
-        @change="$emit('update:textArray', newArray)"
-        >mdi-close</v-icon
-      >
+      {{ t }}<v-icon @click="deleteText(t)">mdi-close</v-icon>
     </p>
   </div>
 </template>
@@ -30,6 +25,7 @@ export default {
   methods: {
     deleteText: function(t) {
       this.newArray = this.newArray.filter((x) => x !== t);
+      this.$parent.$emit("update:textArray", this.newArray);
       console.log("delete", t, this.newArray);
     },
   },
