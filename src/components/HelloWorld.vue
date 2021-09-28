@@ -8,25 +8,23 @@
     <v-row>
       <v-col>
         <v-form>
-          <v-text-field label="Title" v-model="form.cardTitle"></v-text-field>
+          <v-text-field label="Title" v-model="myform.cardTitle"></v-text-field>
           <v-text-field
             label="Sub-Title"
-            v-model="form.cartSubTitle"
+            v-model="myform.cartSubTitle"
           ></v-text-field>
-          <v-text-field label="Text" v-model="form.cardText"></v-text-field>
-          <v-btn type="submit" class="primary" @click.prevent="submitForm(form)"
-            >Submit</v-btn
-          >
+          <v-text-field label="Text" v-model="myform.cardText"></v-text-field>
+          <v-btn @click.prevent="submitForm(myform)">Submit</v-btn>
         </v-form>
       </v-col>
       <v-col>
         <p v-if="error">{{ error | caps }}</p>
         <transition name="fade">
           <v-card v-if="submitted">
-            <v-card-title>{{ form.cardTitle }}</v-card-title>
-            <v-card-subtitle>{{ form.cartSubTitle }}</v-card-subtitle>
+            <v-card-title>{{ myform.cardTitle }}</v-card-title>
+            <v-card-subtitle>{{ myform.cartSubTitle }}</v-card-subtitle>
             <v-card-text>
-              {{ form.cardText }}
+              {{ myform.cardText }}
             </v-card-text>
             <v-card-actions
               ><v-icon @click.prevent="clearCard">mdi-close</v-icon
@@ -46,7 +44,7 @@ export default {
     title: "Hello world!",
     error: "",
     submitted: false,
-    form: {
+    myform: {
       cardText: "",
       cardTitle: "",
       cartSubTitle: "",
@@ -56,9 +54,9 @@ export default {
     submitForm(data) {
       console.log(data);
       if (
-        !this.form.cardText ||
-        !this.form.cardTitle ||
-        !this.form.cartSubTitle
+        !this.myform.cardText ||
+        !this.myform.cardTitle ||
+        !this.myform.cartSubTitle
       ) {
         this.error = "All fields must be completed.";
       } else {
@@ -67,7 +65,7 @@ export default {
       }
     },
     clearCard() {
-      this.form = {
+      this.myform = {
         cardText: "",
         cardTitle: "",
         cartSubTitle: "",

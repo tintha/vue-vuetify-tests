@@ -1,44 +1,33 @@
 <template>
-  <v-app>
-    <v-main>
-      <v-app-bar>
-        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      </v-app-bar>
-      <v-navigation-drawer
-          v-model="drawer"
-          absolute
-          temporary
-      >
-        <v-list>
-          <v-list-item v-for="link in links" :key="link">
-            <v-list-item-action>
-              <v-list-item-icon>x</v-list-item-icon>
-            </v-list-item-action>
-            <v-list-item-title>
-              {{ link }}
-            </v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-      <hello-world />
-    </v-main>
-  </v-app>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/contact">Contact</router-link>
+    </div>
+    <router-view />
+  </div>
 </template>
 
-<script>
-import HelloWorld from "./components/HelloWorld";
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-export default {
-  name: "App",
+#nav {
+  padding: 30px;
 
-  components: {
-    HelloWorld
-  },
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
-  data: () => ({
-    //
-    drawer: false,
-    links: ["Dashboard", "About", "Contact"],
-  }),
-};
-</script>
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>
